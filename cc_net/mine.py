@@ -205,10 +205,26 @@ TEST_CONFIG = BASE_CONFIG._replace(
     cache_dir=Path("test_data/wet_cache"),
 )
 
+SEC_CONFIG = BASE_CONFIG._replace(
+    config_name="sec",
+    dump="2019-09",
+    output_dir=Path("sec_data"),
+    execution="local",
+    num_shards=4,
+    num_segments_per_shard=1,
+    hash_in_mem=2,
+    mine_num_processes=2,
+    lang_whitelist=["en"],
+    target_size="32M",
+    cleanup_after_regroup=False,
+    cache_dir=Path("sec_data/wet_cache"),
+)
+
 PREDEF_CONFIGS = {
     "base": BASE_CONFIG,
     "by_lang": BYLANG_CONFIG,
     "test": TEST_CONFIG,
+    "sec": SEC_CONFIG,
     "test_slurm": TEST_CONFIG._replace(execution="slurm,partition=dev"),
     "debug": TEST_CONFIG._replace(config_name="debug", mine_num_processes=0),
     "reproduce": REPRODUCE_CONFIG,
